@@ -24,7 +24,7 @@ BigInt add(BigInt a, BigInt b) {
 
 int main() {
     BigInt a;
-    int arep[] = {1, 1, 2, 1, 1, 2};
+    int arep[] = {1, 1, 2, 1, 1, 9};
     a.rep = (int*)&arep;
     a.n = sizeof(arep) / sizeof(int);
     a.d = 0;
@@ -36,7 +36,8 @@ int main() {
     b.d = 0;
 
     BigInt c = add(a, b);
-    for (int i = 0; i < c.n; i++) {
+    printf("carry: %d-", c.d);
+    for (int i = c.n - 1; i >= 0; i--) {
         printf("%d", (int)c.rep[i]);
     }
     printf("\n");
