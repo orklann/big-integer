@@ -1,11 +1,25 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 typedef struct _BigInt {
     int *rep;
     int n;
     int d;
 } BigInt;
+
+BigInt big_integer_create(char *s) {
+    BigInt result;
+    result.rep = (int*)malloc(sizeof(int) * strlen(s));
+    int index = 0;
+    for (int i = strlen(s) - 1; i >= 0; i--) {
+        result.rep[index] = s[i] - '0';
+        index++;
+    }
+    result.n = strlen(s);
+    result.d = 0;
+    return result;
+}
 
 BigInt add(BigInt a, BigInt b) {
     int n = a.n;
@@ -23,17 +37,9 @@ BigInt add(BigInt a, BigInt b) {
 }
 
 int main() {
-    BigInt a;
-    int arep[] = {1, 1, 2, 1, 1, 9};
-    a.rep = (int*)&arep;
-    a.n = sizeof(arep) / sizeof(int);
-    a.d = 0;
+    BigInt a = big_integer_create("911211");
 
-    BigInt b;
-    int brep[] = {1, 1, 2, 1, 1, 2};
-    b.rep = (int*)&brep;
-    b.n = sizeof(brep) / sizeof(int);
-    b.d = 0;
+    BigInt b = big_integer_create("211211");
 
     BigInt c = add(a, b);
     printf("carry: %d-", c.d);
