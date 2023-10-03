@@ -37,9 +37,9 @@ BigInt add(BigInt a, BigInt b) {
 }
 
 int main() {
-    BigInt a = big_integer_create("911211");
+    BigInt a = big_integer_create("123173197341734971479174917419741974114749");
 
-    BigInt b = big_integer_create("211211");
+    BigInt b = big_integer_create("123173197341734971479174917419741974114749");
 
     BigInt c = add(a, b);
     printf("carry: %d-", c.d);
