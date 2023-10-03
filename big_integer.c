@@ -15,7 +15,7 @@ BigInt big_integer_create(char *s) {
     return result;
 }
 
-BigInt add(BigInt a, BigInt b) {
+BigInt big_integer_add(BigInt a, BigInt b) {
     int n = a.n;
     int d = 0;
     BigInt c;

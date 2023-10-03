@@ -15,7 +15,7 @@ int main() {
     double cpu_time_used;
 
     start = clock(); // Start the timer
-    BigInt c = add(a, b);
+    BigInt c = big_integer_add(a, b);
     end = clock(); // Stop the timer
     printf("carry: %d-", c.d);
     for (int i = c.n - 1; i >= 0; i--) {
