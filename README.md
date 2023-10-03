@@ -6,5 +6,5 @@ Run `make`
 
 ## Todo
 1. Add substract()
-2. Add multiplication()
-3. Add division()
+2. Add multiply()
+3. Add divide()
