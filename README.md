@@ -1,5 +1,5 @@
 # How to build
-Run make 
+Run `make`
 
 # How to run
-./build/main
+`./build/main`
