@@ -17,6 +17,30 @@ BigInt big_integer_create(char *s) {
 
 BigInt big_integer_add(BigInt a, BigInt b) {
     int n = a.n;
+    if (n < b.n) {
+        n = b.n;
+        int *rep = (int*)malloc(sizeof(int)*n);
+        for (int i = 0; i < n; i++) {
+            if (i < a.n) {
+                rep[i] = a.rep[i];
+            } else {
+                rep[i] = 0;
+            }
+        }
+        free(a.rep);
+        a.rep = rep;
+    } else {
+        int *rep = (int*)malloc(sizeof(int)*n);
+        for (int i = 0; i < n; i++) {
+            if (i < b.n) {
+                rep[i] = b.rep[i];
+            } else {
+                rep[i] = 0;
+            }
+        }
+        free(b.rep);
+        b.rep = rep;
+    }
     int d = 0;
     BigInt c;
     c.rep = (int*)malloc(sizeof(int)*n);
