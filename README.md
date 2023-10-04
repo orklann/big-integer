@@ -5,6 +5,6 @@ Run `make`
 `./build/main`
 
 ## Todo
-1. Add substract()
-2. Add multiply()
-3. Add divide()
+1. Add substraction
+2. Add multiplication
+3. Add division
