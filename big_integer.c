@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include "big_integer.h"
@@ -91,4 +92,23 @@ BigInt big_integer_substract(BigInt a, BigInt b) {
     c.n = n;
     c.d = d;
     return c;
+}
+
+
+char *big_integer_display(BigInt a) {
+    char *result = (char*)malloc(a.n * sizeof(char));
+    int i;
+    for (i = 0; i < a.n; i++) {
+        int c = a.rep[i];
+        if (c >= 0) {
+            result[a.n - 1 - i] = c + '0';       
+        } else {
+            result[a.n - 1 - i] = c + 10 + '0';
+            if (i + 1 <= a.n - 1) {
+                a.rep[i + 1] -= 1;
+            }
+        }
+    }
+    result[a.n] = '\0';
+    return result;
 }

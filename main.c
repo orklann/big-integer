@@ -30,10 +30,7 @@ int main() {
     start = clock(); // Start the timer
     BigInt cc = big_integer_substract(aa, bb);
     end = clock(); // Stop the timer
-    printf("carry: %d-", cc.d);
-    for (int i = cc.n - 1; i >= 0; i--) {
-        printf("%d", (int)cc.rep[i]);
-    }
+    printf("%s", big_integer_display(cc));
     printf("\n");
 
     cpu_time_used = ((double)(end - start)) / CLOCKS_PER_SEC; // Calculate the elapsed time
