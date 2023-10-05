@@ -5,6 +5,5 @@ Run `make`
 `./build/main`
 
 ## Todo
-* Add display() function to print out big integer
 * Add multiplication
 * Add division
