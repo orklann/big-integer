@@ -7,6 +7,10 @@ BigInt big_integer_create(char *s) {
     BigInt result;
     result.rep = (int*)malloc(sizeof(int) * strlen(s));
     int index = 0;
+    /*
+     * layout of rep: 10^0, 10^1, 10^(n-1)
+     * for index from 0 to n-1
+     */
     for (int i = strlen(s) - 1; i >= 0; i--) {
         result.rep[index] = s[i] - '0';
         index++;
