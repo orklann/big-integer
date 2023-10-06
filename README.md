@@ -7,3 +7,6 @@ Run `make`
 ## Todo
 * Add multiplication
 * Add division
+
+## License
+MIT
