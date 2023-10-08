@@ -53,8 +53,8 @@ int main() {
     printf("Time taken: %f seconds\n", cpu_time_used);
 
 
-    BigInt *one = big_integer_create("23");
-    BigInt *_12 = big_integer_create("1000");
+    BigInt *one = big_integer_create("239383838939393949499494949494983736773");
+    BigInt *_12 = big_integer_create("623772382389492394294293429429349249294294");
     BigInt *negative = big_integer_substract(one, _12);
     /*
     for (int i = 0; i < negative->n; i++) {
