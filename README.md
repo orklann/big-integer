@@ -5,6 +5,7 @@ Run `make`
 `./build/main`
 
 ## Todo
+* Fix substraction to take pointers as parameters
 * Add division
 
 ## License
