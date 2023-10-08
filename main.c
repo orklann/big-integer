@@ -84,7 +84,6 @@ int main() {
         i++;
     }
     printf("loop result:\n");
-    printf("size: %d\n", val->n);
     printf("%s\n", big_integer_display(val));
 
     big_integer_delete(a);
