@@ -64,15 +64,15 @@ int main() {
      * Test loop:
      * Python code to test the result as below:
      *
-     *  a = 1238384848458588585857857856868868686868
-     *  b = 3823823723723723723772373272372372372372372323
-     *  i = 0
-     *  val = a
-     *  while i < 10:
-     *      val = val - b
-     *      i += 1
-     *  print(val)
-     *  print(len(str(val)))
+     * a = 1238384848458588585857857856868868686868
+     * b = 3823823723723723723772373272372372372372372323
+     * i = 0
+     * val = a
+     * while i < 10:
+     *     val = val - b
+     *     i += 1
+     * print(val)
+     * print(len(str(val)))
      */
     BigInt *val = big_integer_create("1238384848458588585857857856868868686868");
     BigInt *val2 = big_integer_create("3823823723723723723772373272372372372372372323");
