@@ -15,5 +15,45 @@ int main() {
     char *add_result = big_integer_display(big_integer_add(a, b));
     assert(strcmp(add_result, add_result_test) == 0);
 
+    // Test big_integer_substraction
+    // loop
+    /* 
+     * Test loop:
+     * Python code to test the result as below:
+     *
+     * a = 1238384848458588585857857856868868686868
+     * b = 3823823723723723723772373272372372372372372323
+     * i = 0
+     * val = a
+     * while i < 10:
+     *     val = val - b
+     *     i += 1
+     * print(val)
+     * print(len(str(val)))
+     */
+    BigInt *val = big_integer_create("1238384848458588585857857856868868686868");
+    BigInt *val2 = big_integer_create("3823823723723723723772373272372372372372372323");
+    int i = 0;
+    while (i < 10) {
+        BigInt *temp = big_integer_substract(val, val2);
+        big_integer_delete(val);
+        val = temp;
+        i++;
+    }
+    char *sub_loop_result = big_integer_display(val);
+    char *sub_loop_result_test = "-38238235998852388779135146865865866854855036362";
+    assert(strcmp(sub_loop_result, sub_loop_result_test) == 0);
+
+    // Test big_integer_multiple
+    // #1
+    BigInt *ma = big_integer_create("8823738938393930049483737383002172373893838383838383838383838376373737377812834712734712741241248124810248019248012840128401280412804824");
+    BigInt *mb = big_integer_create("2823738938393930049483737383002172373893838383838383838383838376373737377812834712834712741241248124810248019248012840128401280412804824");
+    BigInt *mul = big_integer_multiple(ma, mb);
+    char *mul_result = big_integer_display(mul);
+    char *mul_result_test = "24915935222565659380208597274198200968079239464899854273783398310297767496735580392029737312062012406901110530956902899101216464305581433145148103983930742046044646535380118108894312312008586816558982892765147370890387778411441787933506205406394343528055753957262717670976";
+    assert(strcmp(mul_result, mul_result_test) == 0);
+
+
+    printf("==== All Tests Pass ====\n");
     return 0;
 }
