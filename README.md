@@ -5,6 +5,7 @@ Run `make`
 `./build/main`
 ## How to run tests
 Run `make tests`
+
 Run `./build/tests`
 
 ## Todo
