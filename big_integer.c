@@ -100,6 +100,47 @@ BigInt* big_integer_multiple_constant(BigInt *a, int constant) {
     return c;
 }
 
+BigInt* big_integer_multiple(BigInt *a, BigInt *b) {
+    int n = a->n;
+    if (n < b->n) {
+        n = b->n;
+        int *rep = (int*)malloc(sizeof(int)*n);
+        for (int i = 0; i < n; i++) {
+            if (i < a->n) {
+                rep[i] = a->rep[i];
+            } else {
+                rep[i] = 0;
+            }
+        }
+        free(a->rep);
+        a->rep = rep;
+    } else {
+        int *rep = (int*)malloc(sizeof(int)*n);
+        for (int i = 0; i < n; i++) {
+            if (i < b->n) {
+                rep[i] = b->rep[i];
+            } else {
+                rep[i] = 0;
+            }
+        }
+        free(b->rep);
+        b->rep = rep;
+    }
+    BigInt *c = big_integer_multiple_constant(a, b->rep[0]);
+    for (int j = 1; j < n; j++) {
+        BigInt *mul = big_integer_multiple_constant(a, b->rep[j]);
+        for (int i = 0; i < j; i++) {
+            BigInt *temp = big_integer_multiple_constant(mul, 10);
+            big_integer_delete(mul);
+            mul = temp;
+        }
+        BigInt *temp = big_integer_add(c, mul);
+        big_integer_delete(mul);
+        c = temp;
+    }
+    return c;
+}
+
 BigInt big_integer_substract(BigInt a, BigInt b) {
     int n = a.n;
     if (n < b.n) {
