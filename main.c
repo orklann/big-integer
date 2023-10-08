@@ -52,6 +52,18 @@ int main() {
     cpu_time_used = ((double)(end - start)) / CLOCKS_PER_SEC; // Calculate the elapsed time
     printf("Time taken: %f seconds\n", cpu_time_used);
 
+
+    BigInt *one = big_integer_create("23");
+    BigInt *_12 = big_integer_create("1000");
+    BigInt *negative = big_integer_substract(one, _12);
+    /*
+    for (int i = 0; i < negative->n; i++) {
+        printf("%d ", negative->rep[i]);
+    }
+    */
+    printf("\n");
+    printf("%s\n", big_integer_display(negative));
+
     big_integer_delete(a);
     big_integer_delete(b);
     big_integer_delete(c);

@@ -183,18 +183,43 @@ BigInt* big_integer_substract(BigInt *a, BigInt *b) {
 char *big_integer_display(BigInt *a) {
     char *result = (char*)malloc(a->n * sizeof(char));
     int i;
+    int sign = 0;
     for (i = 0; i < a->n; i++) {
         int c = a->rep[i];
-        if (c >= 0) {
-            result[a->n - 1 - i] = c + '0';       
+        if (c <= 0) {
+            sign = 1;
         } else {
-            result[a->n - 1 - i] = c + 10 + '0';
-            if (i + 1 <= a->n - 1) {
-                a->rep[i + 1] -= 1;
+            sign = 0;
+        }
+    }
+    for (i = 0; i < a->n; i++) {
+        int c = a->rep[i];
+        if (!sign) {
+            if (c >= 0) {
+                result[a->n - 1 - i] = c + '0';       
+            } else {
+                result[a->n - 1 - i] = c + 10 + '0';
+                if (i + 1 <= a->n - 1) {
+                    a->rep[i + 1] -= 1;
+                }
+            }
+        } else {
+            if (c <= 0) {
+                result[a->n - 1 - i] = (c * -1) + '0';  
+            } else {
+                result[a->n - 1 - i] = 10 - c + '0';
+                if (i + 1 <= a->n - 1) {
+                    a->rep[i + 1] += 1;
+                }
             }
         }
     }
     result[a->n] = '\0';
+    if (sign) {
+        char *sign_result = (char*)malloc((a->n + 1) * sizeof(char));
+        sprintf(sign_result, "-%s", result);
+        return sign_result;
+    }
     return result;
 }
 
