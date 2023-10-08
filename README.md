@@ -5,7 +5,6 @@ Run `make`
 `./build/main`
 
 ## Todo
-* Add multiplication
 * Add division
 
 ## License
