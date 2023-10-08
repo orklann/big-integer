@@ -54,13 +54,8 @@ int main() {
 
 
     BigInt *one = big_integer_create("239383838939393949499494949494983736773");
-    BigInt *_12 = big_integer_create("623772382389492394294293429429349249294294");
-    BigInt *negative = big_integer_substract(one, _12);
-    /*
-    for (int i = 0; i < negative->n; i++) {
-        printf("%d ", negative->rep[i]);
-    }
-    */
+    BigInt *two = big_integer_create("623772382389492394294293429429349249294294");
+    BigInt *negative = big_integer_substract(one, two);
     printf("\n");
     printf("%s\n", big_integer_display(negative));
 
@@ -75,5 +70,8 @@ int main() {
     big_integer_delete(sa);
     big_integer_delete(sb);
     big_integer_delete(sc);
+    big_integer_delete(one);
+    big_integer_delete(two);
+    big_integer_delete(negative);
     return 0;
 }
