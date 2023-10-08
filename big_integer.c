@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include "big_integer.h"
 
 BigInt* big_integer_create(char *s) {
@@ -212,7 +213,19 @@ char *big_integer_display(BigInt *a) {
     result[a->n] = '\0';
     if (sign) {
         char *sign_result = (char*)malloc((a->n + 1) * sizeof(char));
-        sprintf(sign_result, "-%s", result);
+        sign_result[0] = '-';
+        bool leading_zeros = true;
+        int index = 1;
+        for (int i = 0; i < a->n + 1; i++) {
+            if (result[i] != '0' && leading_zeros) {
+                leading_zeros = false;
+            }
+            if (!leading_zeros) {
+                sign_result[index] = result[i];
+                index++;
+            }
+        }
+        sign_result[index] = '\0';
         return sign_result;
     }
     return result;
