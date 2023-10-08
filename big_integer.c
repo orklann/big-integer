@@ -184,13 +184,8 @@ char *big_integer_display(BigInt *a) {
     char *result = (char*)malloc(a->n * sizeof(char));
     int i;
     int sign = 0;
-    for (i = 0; i < a->n; i++) {
-        int c = a->rep[i];
-        if (c <= 0) {
-            sign = 1;
-        } else {
-            sign = 0;
-        }
+    if (a->rep[a->n - 1] < 0) {
+        sign = 1;
     }
     for (i = 0; i < a->n; i++) {
         int c = a->rep[i];
