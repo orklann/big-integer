@@ -77,6 +77,29 @@ BigInt* big_integer_add(BigInt *a, BigInt *b) {
     return c;
 }
 
+/*
+ * 0 <= constant <= 10
+ */
+BigInt* big_integer_multiple_constant(BigInt *a, int constant) {
+    BigInt *c = big_integer_from_size(a->n);
+    int carry = 0;
+    for (int i = 0; i < a->n; i++) {
+        int value = (a->rep[i] * constant) + carry;
+        c->rep[i] =  value % 10;
+        carry = (int)(value / 10);
+    }
+    if (carry >= 1) {
+        BigInt *carry_result = big_integer_from_size(c->n + 1);
+        for (int i = 0; i < c->n; i++) {
+            carry_result->rep[i] = c->rep[i];
+        }
+        carry_result->rep[c->n] = carry;
+        big_integer_delete(c);
+        return carry_result;
+    }
+    return c;
+}
+
 BigInt big_integer_substract(BigInt a, BigInt b) {
     int n = a.n;
     if (n < b.n) {
