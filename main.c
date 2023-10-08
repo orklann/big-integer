@@ -59,6 +59,34 @@ int main() {
     printf("\n");
     printf("%s\n", big_integer_display(negative));
 
+
+    /* 
+     * Test loop:
+     * Python code to test the result as below:
+     *
+     *  a = 1238384848458588585857857856868868686868
+     *  b = 3823823723723723723772373272372372372372372323
+     *  i = 0
+     *  val = a
+     *  while i < 10:
+     *      val = val - b
+     *      i += 1
+     *  print(val)
+     *  print(len(str(val)))
+     */
+    BigInt *val = big_integer_create("1238384848458588585857857856868868686868");
+    BigInt *val2 = big_integer_create("3823823723723723723772373272372372372372372323");
+    int i = 0;
+    while (i < 10) {
+        BigInt *temp = big_integer_substract(val, val2);
+        big_integer_delete(val);
+        val = temp;
+        i++;
+    }
+    printf("loop result:\n");
+    printf("size: %d\n", val->n);
+    printf("%s\n", big_integer_display(val));
+
     big_integer_delete(a);
     big_integer_delete(b);
     big_integer_delete(c);

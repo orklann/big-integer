@@ -168,7 +168,7 @@ BigInt* big_integer_substract(BigInt *a, BigInt *b) {
         free(b->rep);
         b->rep = rep;
     }
-
+    
     int d = 0;
     BigInt *c = big_integer_from_size(n);
     for (int i = 0; i < n; i++) {
@@ -177,6 +177,20 @@ BigInt* big_integer_substract(BigInt *a, BigInt *b) {
         c->rep[i] = sum % 10;
     }
     c->n = n;
+    // Carry occurs
+    if (d < 0) {
+        BigInt * carry_int = big_integer_from_size(n+1);
+        for (int i = 0; i < n + 1; i++) {
+            if (i <= n - 1) {
+                carry_int->rep[i] = c->rep[i];
+            } else {
+                carry_int->rep[i] = -1;
+            }
+        }
+        carry_int->n = n + 1;
+        big_integer_delete(c);
+        return carry_int;
+    }
     return c;
 }
 
