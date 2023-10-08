@@ -141,42 +141,41 @@ BigInt* big_integer_multiple(BigInt *a, BigInt *b) {
     return c;
 }
 
-BigInt big_integer_substract(BigInt a, BigInt b) {
-    int n = a.n;
-    if (n < b.n) {
-        n = b.n;
+BigInt* big_integer_substract(BigInt *a, BigInt *b) {
+    int n = a->n;
+    if (n < b->n) {
+        n = b->n;
         int *rep = (int*)malloc(sizeof(int)*n);
         for (int i = 0; i < n; i++) {
-            if (i < a.n) {
-                rep[i] = a.rep[i];
+            if (i < a->n) {
+                rep[i] = a->rep[i];
             } else {
                 rep[i] = 0;
             }
         }
-        free(a.rep);
-        a.rep = rep;
+        free(a->rep);
+        a->rep = rep;
     } else {
         int *rep = (int*)malloc(sizeof(int)*n);
         for (int i = 0; i < n; i++) {
-            if (i < b.n) {
-                rep[i] = b.rep[i];
+            if (i < b->n) {
+                rep[i] = b->rep[i];
             } else {
                 rep[i] = 0;
             }
         }
-        free(b.rep);
-        b.rep = rep;
+        free(b->rep);
+        b->rep = rep;
     }
+
     int d = 0;
-    BigInt c;
-    c.rep = (int*)malloc(sizeof(int)*n);
+    BigInt *c = big_integer_from_size(n);
     for (int i = 0; i < n; i++) {
-        int sum = a.rep[i] - b.rep[i] + d;
+        int sum = a->rep[i] - b->rep[i] + d;
         d = (int)(sum / 10);
-        c.rep[i] = sum % 10;
+        c->rep[i] = sum % 10;
     }
-    c.n = n;
-    c.d = d;
+    c->n = n;
     return c;
 }
 
