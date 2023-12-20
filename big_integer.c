@@ -195,7 +195,7 @@ BigInt* big_integer_substract(BigInt *a, BigInt *b) {
 }
 
 
-char *big_integer_display(BigInt *a) {
+char *big_integer_to_str(BigInt *a) {
     char *result = (char*)malloc(a->n * sizeof(char));
     int i;
     int sign = 0;

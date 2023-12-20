@@ -16,7 +16,7 @@ int main() {
     BigInt *c = big_integer_add(a, b);
     end = clock(); // Stop the timer
     
-    printf("%s\n", big_integer_display(c));
+    printf("%s\n", big_integer_to_str(c));
     cpu_time_used = ((double)(end - start)) / CLOCKS_PER_SEC; // Calculate the elapsed time
     printf("Time taken: %f seconds\n", cpu_time_used);
 
@@ -24,7 +24,7 @@ int main() {
     start = clock(); // Start the timer
     BigInt *c_mul_const = big_integer_multiple_constant(aa, 9);
     end = clock(); // Stop the timer
-    printf("%s\n", big_integer_display(c_mul_const));
+    printf("%s\n", big_integer_to_str(c_mul_const));
 
     cpu_time_used = ((double)(end - start)) / CLOCKS_PER_SEC; // Calculate the elapsed time
     printf("Time taken: %f seconds\n", cpu_time_used);
@@ -34,7 +34,7 @@ int main() {
     start = clock(); // Start the timer
     BigInt *c_mul = big_integer_multiple(ma, mb);
     end = clock(); // Stop the timer
-    printf("%s\n", big_integer_display(c_mul));
+    printf("%s\n", big_integer_to_str(c_mul));
 
     cpu_time_used = ((double)(end - start)) / CLOCKS_PER_SEC; // Calculate the elapsed time
     printf("Time taken: %f seconds\n", cpu_time_used);
@@ -48,7 +48,7 @@ int main() {
     BigInt *sc = big_integer_substract(sa, sb);
     end = clock(); // Stop the timer
     
-    printf("%s\n", big_integer_display(sc));
+    printf("%s\n", big_integer_to_str(sc));
     cpu_time_used = ((double)(end - start)) / CLOCKS_PER_SEC; // Calculate the elapsed time
     printf("Time taken: %f seconds\n", cpu_time_used);
 
@@ -57,7 +57,7 @@ int main() {
     BigInt *two = big_integer_create("623772382389492394294293429429349249294294");
     BigInt *negative = big_integer_substract(one, two);
     printf("\n");
-    printf("%s\n", big_integer_display(negative));
+    printf("%s\n", big_integer_to_str(negative));
 
 
     /* 
@@ -72,7 +72,7 @@ int main() {
      *     val = val - b
      *     i += 1
      * print(val)
-     * print(len(str(val)))
+     * print(len(to_str(val)))
      */
     BigInt *val = big_integer_create("1238384848458588585857857856868868686868");
     BigInt *val2 = big_integer_create("3823823723723723723772373272372372372372372323");
@@ -84,7 +84,7 @@ int main() {
         i++;
     }
     printf("loop result:\n");
-    printf("%s\n", big_integer_display(val));
+    printf("%s\n", big_integer_to_str(val));
 
     big_integer_delete(a);
     big_integer_delete(b);
