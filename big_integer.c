@@ -27,7 +27,7 @@ BigInt* big_integer_from_size(unsigned int n) {
     return result;
 }
 
-BigInt* big_integer_add(BigInt *a, BigInt *b) {
+void big_integer_add(BigInt *a, BigInt *b, BigInt *c) {
     int n = a->n;
     if (n < b->n) {
         n = b->n;
@@ -54,7 +54,8 @@ BigInt* big_integer_add(BigInt *a, BigInt *b) {
         b->rep = rep;
     }
     int d = 0;
-    BigInt *c = big_integer_from_size(n);
+    free(c->rep);
+    c->rep = (int*)malloc(sizeof(int)*n);
     for (int i = 0; i < n; i++) {
         int sum = a->rep[i] + b->rep[i] + d;
         d = (int)(sum / 10);
@@ -68,14 +69,15 @@ BigInt* big_integer_add(BigInt *a, BigInt *b) {
             if (i <= n - 1) {
                 carry_int->rep[i] = c->rep[i];
             } else {
-                carry_int->rep[i] =  d;
+                carry_int->rep[i] = d;
             }
         }
-        carry_int->n = n + 1;
-        big_integer_delete(c);
-        return carry_int;
+        free(c->rep);
+        c->rep = (int*)malloc(sizeof(int)*carry_int->n * 4);
+        memcpy(c->rep, carry_int->rep, carry_int->n * 4);
+        c->n = carry_int->n;
+        big_integer_delete(carry_int);
     }
-    return c;
 }
 
 /*
@@ -101,6 +103,7 @@ BigInt* big_integer_multiple_constant(BigInt *a, int constant) {
     return c;
 }
 
+/*
 BigInt* big_integer_multiple(BigInt *a, BigInt *b) {
     int n = a->n;
     if (n < b->n) {
@@ -141,6 +144,8 @@ BigInt* big_integer_multiple(BigInt *a, BigInt *b) {
     }
     return c;
 }
+
+*/
 
 BigInt* big_integer_substract(BigInt *a, BigInt *b) {
     int n = a->n;

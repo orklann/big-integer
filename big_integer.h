@@ -7,7 +7,7 @@ typedef struct _BigInt {
 
 BigInt* big_integer_create(char *s);
 BigInt* big_integer_from_size(unsigned int n);
-BigInt* big_integer_add(BigInt *a, BigInt *b);
+void big_integer_add(BigInt *a, BigInt *b, BigInt  *c);
 BigInt* big_integer_multiple_constant(BigInt *a, int constant);
 BigInt* big_integer_multiple(BigInt *a, BigInt *b);
 BigInt* big_integer_substract(BigInt *a, BigInt *b);
