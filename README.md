@@ -9,7 +9,7 @@ Run `make tests`
 Run `./build/tests`
 
 ## Todo
-* Substraction operators take pointers both for operands, and result
+* Substraction operator takes pointers both for operands, and result
 * Add division
 
 ## License
