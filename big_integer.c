@@ -73,8 +73,8 @@ void big_integer_add(BigInt *a, BigInt *b, BigInt *c) {
             }
         }
         free(c->rep);
-        c->rep = (int*)malloc(sizeof(int)*carry_int->n * 4);
-        memcpy(c->rep, carry_int->rep, carry_int->n * 4);
+        c->rep = (int*)malloc(sizeof(int)*carry_int->n);
+        memcpy(c->rep, carry_int->rep, carry_int->n * sizeof(int)/sizeof(unsigned char));
         c->n = carry_int->n;
         big_integer_delete(carry_int);
     }
