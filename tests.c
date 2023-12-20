@@ -16,7 +16,6 @@ int main() {
     BigInt *c = big_integer_create("");
     big_integer_add(a, b, c);
     char *add_result = big_integer_to_str(c);
-    printf("%s\n", add_result);
     assert(strcmp(add_result, add_result_test) == 0);
 
     // Test big_integer_substraction
