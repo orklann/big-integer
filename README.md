@@ -9,7 +9,7 @@ Run `make tests`
 Run `./build/tests`
 
 ## Todo
-* Fix substraction to take pointers as parameters
+* Add, substraction operator take pointers both for operands, and result
 * Add division
 
 ## License
