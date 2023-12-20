@@ -13,3 +13,4 @@ BigInt* big_integer_multiple(BigInt *a, BigInt *b);
 BigInt* big_integer_substract(BigInt *a, BigInt *b);
 char *big_integer_to_str(BigInt *a);
 void big_integer_delete(BigInt *a);
+int big_integer_compare(BigInt *a, BigInt *b);

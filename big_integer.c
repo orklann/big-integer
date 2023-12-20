@@ -255,3 +255,9 @@ void big_integer_delete(BigInt *a) {
     free(a);
 }
 
+int big_integer_compare(BigInt *a, BigInt *b) {
+    /* 
+     * TODO: Implementation after introducing sign field to BigInt structure 
+     */
+    return 0;
+}
