@@ -147,7 +147,7 @@ BigInt* big_integer_multiple(BigInt *a, BigInt *b) {
 
 */
 
-BigInt* big_integer_substract(BigInt *a, BigInt *b) {
+void big_integer_substract(BigInt *a, BigInt *b, BigInt *c) {
     int n = a->n;
     if (n < b->n) {
         n = b->n;
@@ -175,7 +175,8 @@ BigInt* big_integer_substract(BigInt *a, BigInt *b) {
     }
     
     int d = 0;
-    BigInt *c = big_integer_from_size(n);
+    free(c->rep);
+    c->rep = (int*)malloc(sizeof(int)*n);
     for (int i = 0; i < n; i++) {
         int sum = a->rep[i] - b->rep[i] + d;
         d = (int)(sum / 10);
@@ -192,11 +193,12 @@ BigInt* big_integer_substract(BigInt *a, BigInt *b) {
                 carry_int->rep[i] = -1;
             }
         }
-        carry_int->n = n + 1;
-        big_integer_delete(c);
-        return carry_int;
+        free(c->rep);
+        c->rep = (int*)malloc(sizeof(int)*carry_int->n);
+        memcpy(c->rep, carry_int->rep, carry_int->n * sizeof(int)/sizeof(unsigned char));
+        c->n = carry_int->n;
+        big_integer_delete(carry_int);
     }
-    return c;
 }
 
 
@@ -260,4 +262,10 @@ int big_integer_compare(BigInt *a, BigInt *b) {
      * TODO: Implementation after introducing sign field to BigInt structure 
      */
     return 0;
+}
+
+BigInt* big_integer_copy(BigInt *a) {
+    BigInt* copy = big_integer_from_size(a->n);
+    memcpy(copy->rep, a->rep, sizeof(int) / sizeof(char) * a->n);
+    return copy;
 }

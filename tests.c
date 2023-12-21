@@ -35,21 +35,21 @@ int main() {
      * print(len(str(val)))
      */
 
-    /*
     BigInt *val = big_integer_create("1238384848458588585857857856868868686868");
     BigInt *val2 = big_integer_create("3823823723723723723772373272372372372372372323");
+    BigInt *result = big_integer_create("");
+    BigInt **firstVal = &val;
     int i = 0;
     while (i < 10) {
-        BigInt *temp = big_integer_substract(val, val2);
-        big_integer_delete(val);
-        val = temp;
+        big_integer_substract(*firstVal, val2, result);
+        big_integer_delete(*firstVal);
+        BigInt *copy = big_integer_copy(result);
+        firstVal = &copy;
         i++;
     }
-    char *sub_loop_result = big_integer_to_str(val);
+    char *sub_loop_result = big_integer_to_str(result);
     char *sub_loop_result_test = "-38238235998852388779135146865865866854855036362";
     assert(strcmp(sub_loop_result, sub_loop_result_test) == 0);
-
-    */
 
     /*
     // Test big_integer_multiple
