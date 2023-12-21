@@ -38,13 +38,13 @@ int main() {
     BigInt *val = big_integer_create("1238384848458588585857857856868868686868");
     BigInt *val2 = big_integer_create("3823823723723723723772373272372372372372372323");
     BigInt *result = big_integer_create("");
-    BigInt **firstVal = &val;
+    BigInt **first_value = &val;
     int i = 0;
     while (i < 10) {
-        big_integer_substract(*firstVal, val2, result);
-        big_integer_delete(*firstVal);
+        big_integer_substract(*first_value, val2, result);
+        big_integer_delete(*first_value);
         BigInt *copy = big_integer_copy(result);
-        firstVal = &copy;
+        first_value = &copy;
         i++;
     }
     char *sub_loop_result = big_integer_to_str(result);
