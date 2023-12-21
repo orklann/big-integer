@@ -51,6 +51,15 @@ int main() {
     char *sub_loop_result_test = "-38238235998852388779135146865865866854855036362";
     assert(strcmp(sub_loop_result, sub_loop_result_test) == 0);
 
+
+    /* Test negative substraction */
+    BigInt *n1 = big_integer_create("-38238235998852388779135146865865866854855036362");
+    BigInt *n2 = big_integer_create("1918918383873737364645635367367337");
+    BigInt *n3 = big_integer_create("");
+    big_integer_substract(n1, n2, n3);
+    char *n3_str = big_integer_to_str(n3);
+    char *n3_result_test = "-38238235998854307697519020603230512490222403699";
+    assert(strcmp(n3_str, n3_result_test) == 0);
     /*
     // Test big_integer_multiple
     // #1

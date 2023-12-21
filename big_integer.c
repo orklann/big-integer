@@ -8,15 +8,29 @@ BigInt* big_integer_create(char *s) {
     BigInt *result = (BigInt*)malloc(sizeof(BigInt));
     result->rep = (int*)malloc(sizeof(int) * strlen(s));
     int index = 0;
+
+    /* start = 1, means it's a negative integer */
+    int start = 0;
+    if (s[0] == '-') {
+        start = 1;
+    }
     /*
      * layout of rep: 10^0, 10^1, 10^(n-1)
      * for index from 0 to n-1
      */
-    for (int i = strlen(s) - 1; i >= 0; i--) {
-        result->rep[index] = s[i] - '0';
+    for (int i = strlen(s) - 1; i >= start; i--) {
+        if (start == 1) {
+            result->rep[index] = -1 * (s[i] - '0');
+        } else {
+            result->rep[index] = s[i] - '0';
+        }
         index++;
     }
-    result->n = strlen(s);
+    if (start == 1) {
+        result->n = strlen(s) - 1;
+    } else {
+        result->n = strlen(s);
+    }
     return result;
 }
 
